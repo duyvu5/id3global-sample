@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://ofac_us/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://ofac_us/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://ofac_us/">
+      <s:element name="apiSearch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ofac_idF" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="name_word_1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name_word_2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name_word_3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name_word_4" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name_word_5" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="add_Street" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="add_city" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="add_st_prov" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="add_zip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="add_country" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="searchLogic" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="listsToSearch" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="search_comments" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="apiSearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="apiSearchResult" type="tns:searchResults" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="searchResults">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ofac_id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="search_key" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="possible_matches" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="search_date" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="searchResults" type="tns:searchResults" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="apiSearchSoapIn">
+    <wsdl:part name="parameters" element="tns:apiSearch" />
+  </wsdl:message>
+  <wsdl:message name="apiSearchSoapOut">
+    <wsdl:part name="parameters" element="tns:apiSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="apiSearchHttpGetIn">
+    <wsdl:part name="ofac_idF" type="s:string" />
+    <wsdl:part name="name_word_1" type="s:string" />
+    <wsdl:part name="name_word_2" type="s:string" />
+    <wsdl:part name="name_word_3" type="s:string" />
+    <wsdl:part name="name_word_4" type="s:string" />
+    <wsdl:part name="name_word_5" type="s:string" />
+    <wsdl:part name="add_Street" type="s:string" />
+    <wsdl:part name="add_city" type="s:string" />
+    <wsdl:part name="add_st_prov" type="s:string" />
+    <wsdl:part name="add_zip" type="s:string" />
+    <wsdl:part name="add_country" type="s:string" />
+    <wsdl:part name="searchLogic" type="s:string" />
+    <wsdl:part name="listsToSearch" type="s:string" />
+    <wsdl:part name="search_comments" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="apiSearchHttpGetOut">
+    <wsdl:part name="Body" element="tns:searchResults" />
+  </wsdl:message>
+  <wsdl:message name="apiSearchHttpPostIn">
+    <wsdl:part name="ofac_idF" type="s:string" />
+    <wsdl:part name="name_word_1" type="s:string" />
+    <wsdl:part name="name_word_2" type="s:string" />
+    <wsdl:part name="name_word_3" type="s:string" />
+    <wsdl:part name="name_word_4" type="s:string" />
+    <wsdl:part name="name_word_5" type="s:string" />
+    <wsdl:part name="add_Street" type="s:string" />
+    <wsdl:part name="add_city" type="s:string" />
+    <wsdl:part name="add_st_prov" type="s:string" />
+    <wsdl:part name="add_zip" type="s:string" />
+    <wsdl:part name="add_country" type="s:string" />
+    <wsdl:part name="searchLogic" type="s:string" />
+    <wsdl:part name="listsToSearch" type="s:string" />
+    <wsdl:part name="search_comments" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="apiSearchHttpPostOut">
+    <wsdl:part name="Body" element="tns:searchResults" />
+  </wsdl:message>
+  <wsdl:portType name="apiSearchSoap">
+    <wsdl:operation name="apiSearch">
+      <wsdl:input message="tns:apiSearchSoapIn" />
+      <wsdl:output message="tns:apiSearchSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="apiSearchHttpGet">
+    <wsdl:operation name="apiSearch">
+      <wsdl:input message="tns:apiSearchHttpGetIn" />
+      <wsdl:output message="tns:apiSearchHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="apiSearchHttpPost">
+    <wsdl:operation name="apiSearch">
+      <wsdl:input message="tns:apiSearchHttpPostIn" />
+      <wsdl:output message="tns:apiSearchHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="apiSearchSoap" type="tns:apiSearchSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="apiSearch">
+      <soap:operation soapAction="http://ofac_us/apiSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="apiSearchSoap12" type="tns:apiSearchSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="apiSearch">
+      <soap12:operation soapAction="http://ofac_us/apiSearch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="apiSearchHttpGet" type="tns:apiSearchHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="apiSearch">
+      <http:operation location="/apiSearch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="apiSearchHttpPost" type="tns:apiSearchHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="apiSearch">
+      <http:operation location="/apiSearch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="apiSearch">
+    <wsdl:port name="apiSearchSoap" binding="tns:apiSearchSoap">
+      <soap:address location="https://api.ofac-analyzer.com/apiSearch.asmx" />
+    </wsdl:port>
+    <wsdl:port name="apiSearchSoap12" binding="tns:apiSearchSoap12">
+      <soap12:address location="https://api.ofac-analyzer.com/apiSearch.asmx" />
+    </wsdl:port>
+    <wsdl:port name="apiSearchHttpGet" binding="tns:apiSearchHttpGet">
+      <http:address location="https://api.ofac-analyzer.com/apiSearch.asmx" />
+    </wsdl:port>
+    <wsdl:port name="apiSearchHttpPost" binding="tns:apiSearchHttpPost">
+      <http:address location="https://api.ofac-analyzer.com/apiSearch.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,6 @@
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost/wsdl/GBGID3Service.wsdl"
+            uri="wsdl/GBGID3Service.wsdl"/>
+    <system systemId="http://localhost/wsdl/OFAC.wsdl"
+            uri="wsdl/OFAC.wsdl"/>
+</catalog>
